@@ -3,6 +3,8 @@
 // logic to interact with the user to find out the user requirement 
 // antoher logic to call the respective function 
 
+
+// do while start here
 echo "Welcome to Maddington Library" . PHP_EOL;
 echo "Press 1 to add a book" . PHP_EOL;
 echo "Press 2 to delete a book" . PHP_EOL;
@@ -51,6 +53,10 @@ switch ($userImput) {
     default:
         echo "You didn't input a valid option!";
 }
+// do while finishes here
+
+
+
 
 class libraryResource
 {
@@ -70,6 +76,8 @@ class Books extends libraryResource
     //Add Book 
     public function addBook()
     {
+        $list = $this->returnValueFromJsonFile();
+
 
         $this->resource_category = "book";
         $this->iD = readline("Input the book`s ID: ");
@@ -91,8 +99,10 @@ class Books extends libraryResource
             )
         );
 
+        array_push($list, $book);
+
         // return saying success
-        return $this->saveArrayDataToJsonFile($book);
+        return $this->saveArrayDataToJsonFile($list);
 
     }
 
@@ -101,20 +111,33 @@ class Books extends libraryResource
     {
         var_dump($book);
         $jasonData = json_encode($book);
-        file_put_contents("jsonData.json", $jasonData, FILE_APPEND);
+        file_put_contents("jsonData.json", $jasonData);
         return "Data Saved";
     }
 
-    public function returnValueFromJsonFile($jasonData)
+    public function returnValueFromJsonFile()
     {
-        $jasonData = file_get_contents("jsonData.json");
-        echo $jasonData;
+        if (file_exists("jsonData.json")) {
+
+            $jasonData = file_get_contents("jsonData.json");
+            $dataArray = json_decode($jasonData, true);
+
+            if (!empty($dataArray)) {
+                return $dataArray;
+            }
+        }
+        return array();
     }
 
 
     //Delete Book
     public function dellBook()
     {
+        // PUXAR ARRAY DO JSONFILE
+        // PERGUNTAR QUAL A CHAVE --ID-- QUE O USUARIO QUER APAGAR
+        // USAR ARRA-PUSH (MAS PARA APAGAR)
+        // SALVAR A LISTA NOVA NO ARRAY
+
 
     }
 
