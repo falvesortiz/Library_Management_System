@@ -27,7 +27,8 @@ switch ($userImput) {
         echo $book->addBook();
         break;
     case "2":
-        dellBook();
+        $book = new Books();
+        echo $book->dellBook();
         break;
     case "3":
         addAuthor();
@@ -106,15 +107,15 @@ class Books extends libraryResource
 
     }
 
-    //Write in json file 
+    //Send values to an array (jsonfile)
     public function saveArrayDataToJsonFile($book)
     {
-        var_dump($book);
         $jasonData = json_encode($book);
         file_put_contents("jsonData.json", $jasonData);
         return "Data Saved";
     }
 
+    //Function to get values from an array (jsonfile)
     public function returnValueFromJsonFile()
     {
         if (file_exists("jsonData.json")) {
@@ -133,13 +134,37 @@ class Books extends libraryResource
     //Delete Book
     public function dellBook()
     {
-        // PUXAR ARRAY DO JSONFILE
+        //get values from the book list
+        $list = $this->returnValueFromJsonFile();
+
+
         // PERGUNTAR QUAL A CHAVE --ID-- QUE O USUARIO QUER APAGAR
-        // USAR ARRA-PUSH (MAS PARA APAGAR)
-        // SALVAR A LISTA NOVA NO ARRAY
+        $this->iD = readline("Input the book`s ID you want to delete: ");
 
+        $index = null;
 
+        foreach ($list as $key => $book) {
+            foreach ($book as $i => $v) {
+                if ($i == $this->iD) {
+                    $index = $key;
+                }
+            }
+        }
+
+        if ($index != null) {
+            // USAR ARRAy_PUSH (MAS PARA APAGAR)
+            unset($list[$index]);
+
+            // SALVAR A LISTA NOVA NO ARRAY
+
+            return $this->saveArrayDataToJsonFile($list);
+        }
+
+        echo "The ID you submited is not valid. Try again.";
     }
+
+
+
 
     //Add author
     public function addAuthor()
