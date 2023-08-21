@@ -179,9 +179,16 @@ class Books extends libraryResource
         // access the $list 
         $list = $this->returnValueFromJsonFile();
 
-        //Get values form multidimentional arrays
+        //Get values form multidimentional arrays (WORKING BUT NOT FORMATED)
         print_r(array_values($list));
+
+        // TRYING TO USE FOREACH LOOP (NOT WORKING)
+        // foreach ($list as $key => $book) {
+        //     echo "Book ID: " . $key . "-" . "Book name: " . $book;
+        // }
+
     }
+
 
     // Search book
     public function searchBook()
