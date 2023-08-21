@@ -31,10 +31,12 @@ switch ($userImput) {
         echo $book->dellBook();
         break;
     case "3":
-        addAuthor();
+        $book = new Books();
+        echo $book->addAuthor();
         break;
     case "4":
-        listBook();
+        $book = new Books();
+        echo $book->listBook();
         break;
     case "5":
         searchBook();
@@ -156,7 +158,6 @@ class Books extends libraryResource
             unset($list[$index]);
 
             // SALVAR A LISTA NOVA NO ARRAY
-
             return $this->saveArrayDataToJsonFile($list);
         }
 
@@ -175,7 +176,11 @@ class Books extends libraryResource
     //List Book 
     public function listBook()
     {
+        // access the $list 
+        $list = $this->returnValueFromJsonFile();
 
+        //Get values form multidimentional arrays
+        print_r(array_values($list));
     }
 
     // Search book

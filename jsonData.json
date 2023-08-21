@@ -1,5 +1,5 @@
-[
-    {
+{
+    "0": {
         "0002": {
             "Category": "book",
             "Name": "3",
@@ -7,5 +7,23 @@
             "Publisher": "3",
             "Author": "3"
         }
+    },
+    "2": {
+        "0004": {
+            "Category": "book",
+            "Name": "How to learn PHP",
+            "ISBN": "0005265",
+            "Publisher": "NIT",
+            "Author": "Fabio"
+        }
+    },
+    "3": {
+        "0005": {
+            "Category": "book",
+            "Name": "Brazilians in Australia",
+            "ISBN": "525256",
+            "Publisher": "Abril",
+            "Author": "Ortiz"
+        }
     }
-]
+}
