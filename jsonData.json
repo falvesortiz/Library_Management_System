@@ -1,29 +1,29 @@
-{
-    "0": {
+[
+    {
+        "0001": {
+            "Category": "book",
+            "Name": "book name",
+            "ISBN": "8888",
+            "Publisher": "editora",
+            "Author": "fabio"
+        }
+    },
+    {
         "0002": {
             "Category": "book",
-            "Name": "3",
-            "ISBN": "3",
-            "Publisher": "3",
-            "Author": "3"
+            "Name": "teste 2",
+            "ISBN": "9999",
+            "Publisher": "abril",
+            "Author": "alves"
         }
     },
-    "2": {
-        "0004": {
+    {
+        "0003": {
             "Category": "book",
-            "Name": "How to learn PHP",
-            "ISBN": "0005265",
-            "Publisher": "NIT",
-            "Author": "Fabio"
-        }
-    },
-    "3": {
-        "0005": {
-            "Category": "book",
-            "Name": "Brazilians in Australia",
-            "ISBN": "525256",
-            "Publisher": "Abril",
-            "Author": "Ortiz"
+            "Name": "book",
+            "ISBN": "787878",
+            "Publisher": "publibook",
+            "Author": "antonio"
         }
     }
-}
+]

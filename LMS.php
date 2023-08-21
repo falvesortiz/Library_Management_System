@@ -31,8 +31,7 @@ switch ($userImput) {
         echo $book->dellBook();
         break;
     case "3":
-        $book = new Books();
-        echo $book->addAuthor();
+        addAuthor();
         break;
     case "4":
         $book = new Books();
@@ -80,7 +79,6 @@ class Books extends libraryResource
     public function addBook()
     {
         $list = $this->returnValueFromJsonFile();
-
 
         $this->resource_category = "book";
         $this->iD = readline("Input the book`s ID: ");
@@ -164,9 +162,6 @@ class Books extends libraryResource
         echo "The ID you submited is not valid. Try again.";
     }
 
-
-
-
     //Add author
     public function addAuthor()
     {
@@ -177,18 +172,27 @@ class Books extends libraryResource
     public function listBook()
     {
         // access the $list 
-        $list = $this->returnValueFromJsonFile();
+        // $list = $this->returnValueFromJsonFile();
 
         //Get values form multidimentional arrays (WORKING BUT NOT FORMATED)
-        print_r(array_values($list));
+        // print_r(array_values($list));
+
 
         // TRYING TO USE FOREACH LOOP (NOT WORKING)
-        // foreach ($list as $key => $book) {
-        //     echo "Book ID: " . $key . "-" . "Book name: " . $book;
-        // }
+        $json = file_get_contents("jsonData.json");
+        $book = json_decode($json, true);
+        // print_r($book);
 
+        $key = null;
+        foreach ($book as $key => $value) {
+            foreach ($value as $keys => $books) {
+                echo "Book ID: " . $keys . " - Book Name: " . $books["Name"] . PHP_EOL;
+
+            }
+
+
+        }
     }
-
 
     // Search book
     public function searchBook()
