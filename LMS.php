@@ -1,74 +1,71 @@
 <?php
 
-// logic to interact with the user to find out the user requirement 
-// antoher logic to call the respective function 
-
-
-// do while start here
 echo "Welcome to Maddington Library" . PHP_EOL;
 echo PHP_EOL;
-echo "Press 1 to add a book" . PHP_EOL;
-echo "Press 2 to delete a book" . PHP_EOL;
-echo "Press 3 to add an author" . PHP_EOL;
-echo "Press 4 to list books" . PHP_EOL;
-echo "Press 5 to search a book" . PHP_EOL;
-echo "Press 6 to ascending sort a book" . PHP_EOL;
-echo "Press 7 to descending sort a book" . PHP_EOL;
-echo "Press 8 to add a resource" . PHP_EOL;
-echo "Press 9 to list resources" . PHP_EOL;
-echo "Press 10 to delete resources" . PHP_EOL;
 
-$userImput = readline("What do you want to do? Type here: ");
+// do while start here
+do {    
+    echo "Press 1 to add a book" . PHP_EOL;
+    echo "Press 2 to delete a book" . PHP_EOL;
+    echo "Press 3 to add an author" . PHP_EOL;
+    echo "Press 4 to list books" . PHP_EOL;
+    echo "Press 5 to search a book" . PHP_EOL;
+    echo "Press 6 to sort books ascending" . PHP_EOL;
+    echo "Press 7 to sort books descending" . PHP_EOL;
+    echo "Press 8 to add a resource" . PHP_EOL;
+    echo "Press 9 to list resources" . PHP_EOL;
+    echo "Press 10 to delete resources" . PHP_EOL;
 
-switch ($userImput) {
-    case "1":
-        //Calling function you need to create object first of the belogings class
-        //addbook function is in class book 
-        //So create obj of class book and with that object call function addBook
-        $book = new Books();
-        echo $book->addBook();
-        break;
-    case "2":
-        $book = new Books();
-        echo $book->dellBook();
-        break;
-    case "3":
-        addAuthor();
-        break;
-    case "4":
-        $book = new Books();
-        echo $book->listBook();
-        break;
-    case "5":
-        $book = new Books();
-        echo $book->searchBook();
-        break;
-    case "6":
-        $book = new Books();
-        echo $book->sortBook();
-        break;
-    case "7":
-        $book = new Books();
-        echo $book->sortBookDesc();
-        break;
-    case "8":
-        $resource = new otherResources();
-        echo $resource->addRes();
-        break;
-    case "9":
-        $resource = new otherResources();
-        echo $resource->listRes();
-        break;
-    case "10":
-        $resource = new otherResources();
-        echo $resource->dellRes();
-        break;
-    default:
-        echo "You didn't input a valid option!";
-}
+    $userImput = readline("What do you want to do? Type here: ");
+
+    switch ($userImput) {
+        case "1":
+            $book = new Books();
+            echo $book->addBook();
+            break;
+        case "2":
+            $book = new Books();
+            echo $book->dellBook();
+            break;
+        case "3":
+            addAuthor();
+            break;
+        case "4":
+            $book = new Books();
+            echo $book->listBook();
+            break;
+        case "5":
+            $book = new Books();
+            echo $book->searchBook();
+            break;
+        case "6":
+            $book = new Books();
+            echo $book->sortBook();
+            break;
+        case "7":
+            $book = new Books();
+            echo $book->sortBookDesc();
+            break;
+        case "8":
+            $resource = new otherResources();
+            echo $resource->addRes();
+            break;
+        case "9":
+            $resource = new otherResources();
+            echo $resource->listRes();
+            break;
+        case "10":
+            $resource = new otherResources();
+            echo $resource->dellRes();
+            break;
+        default:
+            echo "You didn't input a valid option!";
+    }
+
+    $i = readline("Do you want to continue (yes/no): ");
+
 // do while finishes here
-
-
+} while ($i == "yes");
 
 class libraryResource
 {
@@ -362,4 +359,3 @@ function returnValueFromJsonFile()
     }
     return array();
 }
-
