@@ -178,12 +178,6 @@ class Books extends libraryResource
     //List Book 
     public function listBook()
     {
-        // access the $list 
-        // $list = $this->returnValueFromJsonFile();
-
-        //Get values form multidimentional arrays (WORKING BUT NOT FORMATTED)
-        // print_r(array_values($list));
-
 
         // USING FOREACH LOOP (WORKING BEAUTIFULLY)
         $json = file_get_contents("jsonData.json");
@@ -204,12 +198,10 @@ class Books extends libraryResource
     {
         $userImput = readline("What book do you want to search?: ");
 
-
         // Access the json file and return the array
         $json = file_get_contents("jsonData.json");
         $book = json_decode($json, true);
 
-        $key = null;
         foreach ($book as $key => $value) {
             foreach ($value as $keys => $books) {
                 if ($userImput == $books["Name"]) {
