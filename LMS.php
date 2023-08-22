@@ -11,10 +11,11 @@ echo "Press 2 to delete a book" . PHP_EOL;
 echo "Press 3 to add an author" . PHP_EOL;
 echo "Press 4 to list books" . PHP_EOL;
 echo "Press 5 to search a book" . PHP_EOL;
-echo "Press 6 to sort a book" . PHP_EOL;
-echo "Press 7 to add a resource" . PHP_EOL;
-echo "Press 8 to list resources" . PHP_EOL;
-echo "Press 9 to delete resources" . PHP_EOL;
+echo "Press 6 to ascending sort a book" . PHP_EOL;
+echo "Press 7 to descending sort a book" . PHP_EOL;
+echo "Press 8 to add a resource" . PHP_EOL;
+echo "Press 9 to list resources" . PHP_EOL;
+echo "Press 10 to delete resources" . PHP_EOL;
 
 $userImput = readline("What do you want to do? Type here: ");
 
@@ -45,12 +46,16 @@ switch ($userImput) {
         echo $book->sortBook();
         break;
     case "7":
-        addRes();
+        $book = new Books();
+        echo $book->sortBookDesc();
         break;
     case "8":
-        listRes();
+        addRes();
         break;
     case "9":
+        listRes();
+        break;
+    case "10":
         dellRes();
         break;
     default:
@@ -207,26 +212,46 @@ class Books extends libraryResource
         $json = file_get_contents("jsonData.json");
         $book = json_decode($json, true);
 
-
-        $key = null;
-
+        //loop the array inside array.
+        //Check if the resource category is Book
+        //Get the book's ID [keys] and the book's name
         foreach ($book as $key => $value) {
             foreach ($value as $keys => $books) {
                 if ($books["Category"] == "book") {
-                    $b [$keys] = $books["Name"];
+                    $b[$keys] = $books["Name"];
                 }
             }
         }
+
+        //Sort the list by the books name and print the array 
         asort($b);
         print_r($b);
-    
 
     }
 
 
     //Sort book descent
-    public function sortBookDecs()
+    public function sortBookDesc()
     {
+
+        // get data from json file
+        $json = file_get_contents("jsonData.json");
+        $book = json_decode($json, true);
+
+        //loop the array inside array.
+        //Check if the resource category is Book
+        //Get the book's ID [keys] and the book's name
+        foreach ($book as $key => $value) {
+            foreach ($value as $keys => $books) {
+                if ($books["Category"] == "book") {
+                    $b[$keys] = $books["Name"];
+                }
+            }
+        }
+
+        //Sort the list by the books name and print the array 
+        arsort($b);
+        print_r($b);
 
     }
 }
