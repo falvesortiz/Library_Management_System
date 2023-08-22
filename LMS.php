@@ -6,6 +6,7 @@
 
 // do while start here
 echo "Welcome to Maddington Library" . PHP_EOL;
+echo PHP_EOL;
 echo "Press 1 to add a book" . PHP_EOL;
 echo "Press 2 to delete a book" . PHP_EOL;
 echo "Press 3 to add an author" . PHP_EOL;
@@ -51,7 +52,8 @@ switch ($userImput) {
         echo $book->sortBookDesc();
         break;
     case "8":
-        addRes();
+        $resource = new otherResources();
+        echo $resource->addRes();
         break;
     case "9":
         listRes();
@@ -272,6 +274,30 @@ class otherResources extends libraryResource
     //Add resource
     public function addRes()
     {
+        $list = $this->returnValueFromJsonFile();
+
+        $this->resource_category = "Other Resource";
+        $this->iD = readline("Input the resource`s ID: ");
+        $this->resName = readline("Input the resource`s name: ");
+        $this->resDescrip = readline("Input the resource`s description: ");
+        $this->resBrand = readline("Input the resource`s brand: ");
+
+        //Create associative array 
+        // Put this values on array
+        global $book;
+        $book = array(
+            $this->iD => array(
+                'Category' => $this->resource_category,
+                'Name' => $this->resName,
+                'Description' => $this->resDescrip,
+                'Brand' => $this->resBrand,
+            )
+        );
+
+        array_push($list, $book);
+
+        // return saying success
+        return $this->saveArrayDataToJsonFile($list);
 
     }
 
