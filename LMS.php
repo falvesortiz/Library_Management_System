@@ -39,7 +39,8 @@ switch ($userImput) {
         echo $book->listBook();
         break;
     case "5":
-        searchBook();
+        $book = new Books();
+        echo $book->searchBook();
         break;
     case "6":
         $book = new Books();
@@ -201,7 +202,21 @@ class Books extends libraryResource
     // Search book
     public function searchBook()
     {
+        $userImput = readline("What book do you want to search?: ");
 
+
+        // Access the json file and return the array
+        $json = file_get_contents("jsonData.json");
+        $book = json_decode($json, true);
+
+        $key = null;
+        foreach ($book as $key => $value) {
+            foreach ($value as $keys => $books) {
+                if ($userImput == $books["Name"]) {
+                    print_r($books);
+                }
+            }
+        }
     }
 
     //Sort book 
@@ -238,7 +253,7 @@ class Books extends libraryResource
         $json = file_get_contents("jsonData.json");
         $book = json_decode($json, true);
 
-        //loop the array inside array.
+        //Loop the array inside array.
         //Check if the resource category is Book
         //Get the book's ID [keys] and the book's name
         foreach ($book as $key => $value) {
@@ -249,7 +264,7 @@ class Books extends libraryResource
             }
         }
 
-        //Sort the list by the books name and print the array 
+        //Descending sort the list by the books name and print the array 
         arsort($b);
         print_r($b);
 
