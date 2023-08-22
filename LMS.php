@@ -4,7 +4,7 @@ echo "Welcome to Maddington Library" . PHP_EOL;
 echo PHP_EOL;
 
 // do while start here
-do {    
+do {
     echo "Press 1 to add a book" . PHP_EOL;
     echo "Press 2 to delete a book" . PHP_EOL;
     echo "Press 3 to add an author" . PHP_EOL;
@@ -28,7 +28,8 @@ do {
             echo $book->dellBook();
             break;
         case "3":
-            addAuthor();
+            $book = new Books();
+            echo $book->addAuthor();
             break;
         case "4":
             $book = new Books();
@@ -62,9 +63,10 @@ do {
             echo "You didn't input a valid option!";
     }
 
+    echo PHP_EOL;
     $i = readline("Do you want to continue (yes/no): ");
 
-// do while finishes here
+    // do while finishes here
 } while ($i == "yes");
 
 class libraryResource
@@ -114,8 +116,6 @@ class Books extends libraryResource
 
     }
 
-
-
     //Delete Book
     public function dellBook()
     {
@@ -151,6 +151,22 @@ class Books extends libraryResource
     public function addAuthor()
     {
 
+        // $userInput = readline("Input the book`s name you want to add Author to: ");
+        // $bookAuthor = readline("Add Author's name: ");
+
+        // // USING FOREACH LOOP (WORKING BEAUTIFULLY)
+        // $json = file_get_contents("jsonData.json");
+        // $book = json_decode($json, true);
+
+        // $key = null;
+        // foreach ($book as $key => $value) {
+        //     foreach ($value as $keys => $books) {
+        //         if ($books["Name"] == $userInput) {
+                    
+        //         }
+        //     }
+        // }
+        // return saveArrayDataToJsonFile($book);
     }
 
     //List Book 
