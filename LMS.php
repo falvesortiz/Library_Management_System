@@ -41,7 +41,8 @@ switch ($userImput) {
         searchBook();
         break;
     case "6":
-        sortBook();
+        $book = new Books();
+        echo $book->sortBook();
         break;
     case "7":
         addRes();
@@ -174,23 +175,21 @@ class Books extends libraryResource
         // access the $list 
         // $list = $this->returnValueFromJsonFile();
 
-        //Get values form multidimentional arrays (WORKING BUT NOT FORMATED)
+        //Get values form multidimentional arrays (WORKING BUT NOT FORMATTED)
         // print_r(array_values($list));
 
 
-        // TRYING TO USE FOREACH LOOP (NOT WORKING)
+        // USING FOREACH LOOP (WORKING BEAUTIFULLY)
         $json = file_get_contents("jsonData.json");
         $book = json_decode($json, true);
-        // print_r($book);
 
         $key = null;
         foreach ($book as $key => $value) {
             foreach ($value as $keys => $books) {
-                echo "Book ID: " . $keys . " - Book Name: " . $books["Name"] . PHP_EOL;
-
+                if ($books["Category"] == "book") {
+                    echo "Book ID: " . $keys . " - Book Name: " . $books["Name"] . PHP_EOL;
+                }
             }
-
-
         }
     }
 
@@ -204,7 +203,26 @@ class Books extends libraryResource
     public function sortBook()
     {
 
+        // get data from json file
+        $json = file_get_contents("jsonData.json");
+        $book = json_decode($json, true);
+
+
+        $key = null;
+
+        foreach ($book as $key => $value) {
+            foreach ($value as $keys => $books) {
+                if ($books["Category"] == "book") {
+                    $b [$keys] = $books["Name"];
+                }
+            }
+        }
+        asort($b);
+        print_r($b);
+    
+
     }
+
 
     //Sort book descent
     public function sortBookDecs()
@@ -244,18 +262,3 @@ class Author
     private $autorId;
     private $authorName;
 }
-
-
-
-
-/* 
-1 - user choose
-2 - ask information of the new book 
-3 - assign the values to the Object property
-4 - save the new book (new object) in the json file
-5 - 
-
-
-
-crate a method for saving info to the json file
-*/

@@ -1,5 +1,5 @@
-[
-    {
+{
+    "0": {
         "0001": {
             "Category": "book",
             "Name": "book name",
@@ -8,16 +8,7 @@
             "Author": "fabio"
         }
     },
-    {
-        "0002": {
-            "Category": "book",
-            "Name": "teste 2",
-            "ISBN": "9999",
-            "Publisher": "abril",
-            "Author": "alves"
-        }
-    },
-    {
+    "2": {
         "0003": {
             "Category": "book",
             "Name": "book",
@@ -25,5 +16,41 @@
             "Publisher": "publibook",
             "Author": "antonio"
         }
+    },
+    "3": {
+        "545": {
+            "Category": "book",
+            "Name": "KAJ\u00c7SA",
+            "ISBN": "44]454]",
+            "Publisher": "45",
+            "Author": "54"
+        }
+    },
+    "4": {
+        "54": {
+            "Category": "book",
+            "Name": "OWEKO",
+            "ISBN": "5555",
+            "Publisher": "555",
+            "Author": "555"
+        }
+    },
+    "5": {
+        "55555": {
+            "Category": "book",
+            "Name": "WWW",
+            "ISBN": "546",
+            "Publisher": "5",
+            "Author": "5"
+        }
+    },
+    "6": {
+        "4": {
+            "Category": "book",
+            "Name": "AA",
+            "ISBN": "55",
+            "Publisher": "",
+            "Author": "5"
+        }
     }
-]
+}
