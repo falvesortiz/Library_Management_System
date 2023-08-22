@@ -21,7 +21,7 @@
         "545": {
             "Category": "book",
             "Name": "KAJSA",
-            "ISBN": "44]454]",
+            "ISBN": "44454",
             "Publisher": "45",
             "Author": "54"
         }
@@ -44,13 +44,21 @@
             "Author": "5"
         }
     },
-    "6": {
-        "4": {
+    "7": {
+        "00008": {
             "Category": "book",
-            "Name": "AA",
-            "ISBN": "55",
-            "Publisher": "",
-            "Author": "5"
+            "Name": "zebra",
+            "ISBN": "09090",
+            "Publisher": "coloral",
+            "Author": "Ze de Abreu"
+        }
+    },
+    "8": {
+        "63636": {
+            "Category": "Other Resource",
+            "Name": "Laptop",
+            "Description": "good conditions",
+            "Brand": "Acer"
         }
     }
 }

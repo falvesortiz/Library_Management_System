@@ -56,16 +56,17 @@ switch ($userImput) {
         echo $resource->addRes();
         break;
     case "9":
-        listRes();
+        $resource = new otherResources();
+        echo $resource->listRes();
         break;
     case "10":
-        dellRes();
+        $resource = new otherResources();
+        echo $resource->dellRes();
         break;
     default:
         echo "You didn't input a valid option!";
 }
 // do while finishes here
-
 
 
 
@@ -87,7 +88,7 @@ class Books extends libraryResource
     //Add Book 
     public function addBook()
     {
-        $list = $this->returnValueFromJsonFile();
+        $list = returnValueFromJsonFile();
 
         $this->resource_category = "book";
         $this->iD = readline("Input the book`s ID: ");
@@ -112,39 +113,17 @@ class Books extends libraryResource
         array_push($list, $book);
 
         // return saying success
-        return $this->saveArrayDataToJsonFile($list);
+        return saveArrayDataToJsonFile($list);
 
     }
 
-    //Send values to an array (jsonfile)
-    public function saveArrayDataToJsonFile($book)
-    {
-        $jasonData = json_encode($book);
-        file_put_contents("jsonData.json", $jasonData);
-        return "Data Saved";
-    }
-
-    //Function to get values from an array (jsonfile)
-    public function returnValueFromJsonFile()
-    {
-        if (file_exists("jsonData.json")) {
-
-            $jasonData = file_get_contents("jsonData.json");
-            $dataArray = json_decode($jasonData, true);
-
-            if (!empty($dataArray)) {
-                return $dataArray;
-            }
-        }
-        return array();
-    }
 
 
     //Delete Book
     public function dellBook()
     {
         //get values from the book list
-        $list = $this->returnValueFromJsonFile();
+        $list = returnValueFromJsonFile();
 
 
         // PERGUNTAR QUAL A CHAVE --ID-- QUE O USUARIO QUER APAGAR
@@ -165,7 +144,7 @@ class Books extends libraryResource
             unset($list[$index]);
 
             // SALVAR A LISTA NOVA NO ARRAY
-            return $this->saveArrayDataToJsonFile($list);
+            return saveArrayDataToJsonFile($list);
         }
 
         echo "The ID you submited is not valid. Try again.";
@@ -274,7 +253,7 @@ class otherResources extends libraryResource
     //Add resource
     public function addRes()
     {
-        $list = $this->returnValueFromJsonFile();
+        $list = returnValueFromJsonFile();
 
         $this->resource_category = "Other Resource";
         $this->iD = readline("Input the resource`s ID: ");
@@ -297,7 +276,7 @@ class otherResources extends libraryResource
         array_push($list, $book);
 
         // return saying success
-        return $this->saveArrayDataToJsonFile($list);
+        return saveArrayDataToJsonFile($list);
 
     }
 
@@ -305,11 +284,51 @@ class otherResources extends libraryResource
     public function listRes()
     {
 
+        // USING FOREACH LOOP (WORKING BEAUTIFULLY)
+        $json = file_get_contents("jsonData.json");
+        $book = json_decode($json, true);
+
+        foreach ($book as $key => $value) {
+            foreach ($value as $keys => $books) {
+                if ($books["Category"] == "Other Resource") {
+                    echo "Resource ID: " . $keys . " - Resource Name: " . $books["Name"] . PHP_EOL;
+                }
+            }
+        }
+
     }
 
     //delete resource
     public function dellRes()
     {
+
+        //get values from the book list
+        $list = returnValueFromJsonFile();
+
+
+        // PERGUNTAR QUAL A CHAVE --ID-- QUE O USUARIO QUER APAGAR
+        $this->iD = readline("Input the resources`s ID you want to delete: ");
+
+        $index = null;
+
+        foreach ($list as $key => $book) {
+            foreach ($book as $i => $v) {
+                if ($i == $this->iD) {
+                    $index = $key;
+                }
+            }
+        }
+
+        if ($index != null) {
+            // unset para remover data da array
+            unset($list[$index]);
+
+            // SALVAR A LISTA NOVA NO ARRAY
+            return saveArrayDataToJsonFile($list);
+        }
+
+        echo "The ID you submited is not valid. Try again.";
+
 
     }
 }
@@ -320,3 +339,27 @@ class Author
     private $autorId;
     private $authorName;
 }
+
+//Send values to an array (jsonfile)
+function saveArrayDataToJsonFile($book)
+{
+    $jasonData = json_encode($book);
+    file_put_contents("jsonData.json", $jasonData);
+    return "Data Saved";
+}
+
+//Function to get values from an array (jsonfile)
+function returnValueFromJsonFile()
+{
+    if (file_exists("jsonData.json")) {
+
+        $jasonData = file_get_contents("jsonData.json");
+        $dataArray = json_decode($jasonData, true);
+
+        if (!empty($dataArray)) {
+            return $dataArray;
+        }
+    }
+    return array();
+}
+
