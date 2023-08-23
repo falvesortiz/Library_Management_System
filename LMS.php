@@ -190,6 +190,7 @@ class Books extends libraryResource
     // Search book
     public function searchBook()
     {
+        //TODO: fix how print and show ID
         $userImput = readline("What book do you want to search?: ");
 
         // Access the json file and return the array

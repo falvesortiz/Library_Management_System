@@ -1,1 +1,54 @@
-[{"1":{"Category":"book","Name":"O pequeno principe","ISBN":"0909","Publisher":"editora abriu","Author":"Antonio"}},{"2":{"Category":"book","Name":"Barbi girl","ISBN":"78279","Publisher":"Matel","Author":"Martha"}},{"3":{"Category":"book","Name":"Dragon ball z","ISBN":"6255","Publisher":"Anime","Author":"Goku"}},{"4":{"Category":"book","Name":"The Big Bang Theory","ISBN":"63570","Publisher":"TBBT","Author":"Sheldon Cooper"}},{"5":{"Category":"Other Resource","Name":"Laptop","Description":"good condition","Brand":"Acer"}},{"6":{"Category":"Other Resource","Name":"Desk","Description":"Bad condition","Brand":"Ikea"}}]
+{
+    "0": {
+        "1": {
+            "Category": "book",
+            "Name": "O pequeno principe",
+            "ISBN": "0909",
+            "Publisher": "editora abriu",
+            "Author": "Antonio"
+        }
+    },
+    "2": {
+        "3": {
+            "Category": "book",
+            "Name": "Dragon ball z",
+            "ISBN": "6255",
+            "Publisher": "Anime",
+            "Author": "Goku"
+        }
+    },
+    "3": {
+        "4": {
+            "Category": "book",
+            "Name": "The Big Bang Theory",
+            "ISBN": "63570",
+            "Publisher": "TBBT",
+            "Author": "Sheldon Cooper"
+        }
+    },
+    "4": {
+        "5": {
+            "Category": "Other Resource",
+            "Name": "Laptop",
+            "Description": "good condition",
+            "Brand": "Acer"
+        }
+    },
+    "5": {
+        "6": {
+            "Category": "Other Resource",
+            "Name": "Desk",
+            "Description": "Bad condition",
+            "Brand": "Ikea"
+        }
+    },
+    "6": {
+        "8": {
+            "Category": "book",
+            "Name": "La vida de Marli",
+            "ISBN": "546456465",
+            "Publisher": "Editora Vagabunda",
+            "Author": "Marlly"
+        }
+    }
+}
