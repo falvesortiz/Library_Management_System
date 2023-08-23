@@ -7,14 +7,13 @@ echo PHP_EOL;
 do {
     echo "Press 1 to add a book" . PHP_EOL;
     echo "Press 2 to delete a book" . PHP_EOL;
-    echo "Press 3 to add an author" . PHP_EOL;
-    echo "Press 4 to list books" . PHP_EOL;
-    echo "Press 5 to search a book" . PHP_EOL;
-    echo "Press 6 to sort books ascending" . PHP_EOL;
-    echo "Press 7 to sort books descending" . PHP_EOL;
-    echo "Press 8 to add a resource" . PHP_EOL;
-    echo "Press 9 to list resources" . PHP_EOL;
-    echo "Press 10 to delete resources" . PHP_EOL;
+    echo "Press 3 to list books" . PHP_EOL;
+    echo "Press 4 to search a book" . PHP_EOL;
+    echo "Press 5 to sort books ascending" . PHP_EOL;
+    echo "Press 6 to sort books descending" . PHP_EOL;
+    echo "Press 7 to add a resource" . PHP_EOL;
+    echo "Press 8 to list resources" . PHP_EOL;
+    echo "Press 9 to delete resources" . PHP_EOL;
 
     $userImput = readline("What do you want to do? Type here: ");
 
@@ -29,33 +28,29 @@ do {
             break;
         case "3":
             $book = new Books();
-            echo $book->addAuthor();
+            echo $book->listBook();
             break;
         case "4":
             $book = new Books();
-            echo $book->listBook();
+            echo $book->searchBook();
             break;
         case "5":
             $book = new Books();
-            echo $book->searchBook();
+            echo $book->sortBook();
             break;
         case "6":
             $book = new Books();
-            echo $book->sortBook();
-            break;
-        case "7":
-            $book = new Books();
             echo $book->sortBookDesc();
             break;
-        case "8":
+        case "7":
             $resource = new otherResources();
             echo $resource->addRes();
             break;
-        case "9":
+        case "8":
             $resource = new otherResources();
             echo $resource->listRes();
             break;
-        case "10":
+        case "9":
             $resource = new otherResources();
             echo $resource->dellRes();
             break;
@@ -94,7 +89,7 @@ class Books extends libraryResource
         $this->bookName = readline("Input the book`s name: ");
         $this->bookISBN = readline("Input the book`s ISBN: ");
         $this->bookPublisher = readline("Input the book`s publisher: ");
-        $this->bookAuthor = readline("Input the book`s author: ");
+        $this->bookAuthor = $this->addAuthor(); //readline("Input the book`s author: ");
 
         //Create associative array 
         // Put this values on array
@@ -105,7 +100,7 @@ class Books extends libraryResource
                 'Name' => $this->bookName,
                 'ISBN' => $this->bookISBN,
                 'Publisher' => $this->bookPublisher,
-                'Author' => $this->bookAuthor,
+                'Author' => $this->bookAuthor->GetAuthor(),
             )
         );
 
@@ -150,23 +145,16 @@ class Books extends libraryResource
     //Add author
     public function addAuthor()
     {
+        //ask user for info of the author
+        $authorId = readline("Input the Author's Id: ");
+        $authorName = readline("Input the book`s author: ");
 
-        // $userInput = readline("Input the book`s name you want to add Author to: ");
-        // $bookAuthor = readline("Add Author's name: ");
 
-        // // USING FOREACH LOOP (WORKING BEAUTIFULLY)
-        // $json = file_get_contents("jsonData.json");
-        // $book = json_decode($json, true);
+        //creat an objet author with the info of the user
+        $author = new Author($authorId, $authorName);
 
-        // $key = null;
-        // foreach ($book as $key => $value) {
-        //     foreach ($value as $keys => $books) {
-        //         if ($books["Name"] == $userInput) {
-                    
-        //         }
-        //     }
-        // }
-        // return saveArrayDataToJsonFile($book);
+        //return the object
+        return $author;
     }
 
     //List Book 
@@ -190,17 +178,21 @@ class Books extends libraryResource
     // Search book
     public function searchBook()
     {
-        //TODO: fix how print and show ID
         $userImput = readline("What book do you want to search?: ");
 
         // Access the json file and return the array
         $json = file_get_contents("jsonData.json");
         $book = json_decode($json, true);
 
-        foreach ($book as $key => $value) {
-            foreach ($value as $keys => $books) {
+        foreach ($book as $value) {
+            foreach ($value as $books) {
                 if ($userImput == $books["Name"]) {
-                    print_r($books);
+                    print("Name: " . $books["Name"] . "\n" .
+                        "ISBN: " . $books["ISBN"] . "\n" .
+                        "Publisher: " . $books["Publisher"] . "\n");
+                    foreach ($books["Author"] as $key => $author) {
+                        print("Author: " . $key . " => " . $author);
+                    }
                 }
             }
         }
@@ -350,8 +342,19 @@ class otherResources extends libraryResource
 class Author
 {
 
-    private $autorId;
+    private $authorId;
     private $authorName;
+
+    public function __construct($authorId, $authorName)
+    {
+        $this->authorId = $authorId;
+        $this->authorName = $authorName;
+    }
+
+    public function GetAuthor()
+    {
+        return array($this->authorId => $this->authorName);
+    }
 }
 
 //Send values to an array (jsonfile)
