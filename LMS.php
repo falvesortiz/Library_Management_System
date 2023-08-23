@@ -89,7 +89,7 @@ class Books extends libraryResource
         $this->bookName = readline("Input the book`s name: ");
         $this->bookISBN = readline("Input the book`s ISBN: ");
         $this->bookPublisher = readline("Input the book`s publisher: ");
-        $this->bookAuthor = $this->addAuthor(); //readline("Input the book`s author: ");
+        $this->bookAuthor = $this->addAuthor();
 
         //Create associative array 
         // Put this values on array

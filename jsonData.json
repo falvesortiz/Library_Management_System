@@ -1,0 +1,32 @@
+{
+    "0": {
+        "1": {
+            "Category": "book",
+            "Name": "Logics",
+            "ISBN": "121212",
+            "Publisher": "Editora Abriu",
+            "Author": {
+                "001": "Filho"
+            }
+        }
+    },
+    "2": {
+        "3": {
+            "Category": "book",
+            "Name": "Eclipse",
+            "ISBN": "85695",
+            "Publisher": "Mints",
+            "Author": {
+                "3": "Bruna"
+            }
+        }
+    },
+    "3": {
+        "6": {
+            "Category": "Other Resource",
+            "Name": "Laptop",
+            "Description": "good",
+            "Brand": "Acer"
+        }
+    }
+}
