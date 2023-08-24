@@ -379,3 +379,5 @@ function returnValueFromJsonFile()
     }
     return array();
 }
+
+?>
