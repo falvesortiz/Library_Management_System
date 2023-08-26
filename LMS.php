@@ -36,7 +36,8 @@ do {
             break;
         case "5":
             $book = new Books();
-            echo $book->sortBook();
+            $book = $book->sortBook();
+            //
             break;
         case "6":
             $book = new Books();
@@ -183,10 +184,12 @@ class Books extends libraryResource
         // Access the json file and return the array
         $json = file_get_contents("jsonData.json");
         $book = json_decode($json, true);
+        $returnValue = [];
 
         foreach ($book as $value) {
             foreach ($value as $books) {
                 if ($userImput == $books["Name"]) {
+                    $returnValue = $books;
                     print("Name: " . $books["Name"] . "\n" .
                         "ISBN: " . $books["ISBN"] . "\n" .
                         "Publisher: " . $books["Publisher"] . "\n");
@@ -196,6 +199,8 @@ class Books extends libraryResource
                 }
             }
         }
+
+        return $returnValue;
     }
 
     //Sort book 
@@ -206,6 +211,8 @@ class Books extends libraryResource
         $json = file_get_contents("jsonData.json");
         $book = json_decode($json, true);
 
+        // $returnBook = [];
+
         //loop the array inside array.
         //Check if the resource category is Book
         //Get the book's ID [keys] and the book's name
@@ -213,6 +220,7 @@ class Books extends libraryResource
             foreach ($value as $keys => $books) {
                 if ($books["Category"] == "book") {
                     $b[$keys] = $books["Name"];
+                    // $returnBook [] = $b;
                 }
             }
         }
@@ -220,6 +228,8 @@ class Books extends libraryResource
         //Sort the list by the books name and print the array 
         asort($b);
         print_r($b);
+     
+        return $b;
 
     }
 
