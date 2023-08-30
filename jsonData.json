@@ -1,32 +1,43 @@
-{
-    "0": {
+[
+    {
         "1": {
             "Category": "book",
-            "Name": "Logics",
-            "ISBN": "121212",
-            "Publisher": "Editora Abriu",
+            "Name": "Barbi",
+            "ISBN": "123",
+            "Publisher": "Matel",
             "Author": {
-                "001": "Filho"
+                "1": "Martha"
             }
         }
     },
-    "2": {
-        "3": {
+    {
+        "2": {
             "Category": "book",
-            "Name": "Eclipse",
-            "ISBN": "85695",
-            "Publisher": "Mints",
+            "Name": "The big bang theory",
+            "ISBN": "1234",
+            "Publisher": "TBBT",
             "Author": {
-                "3": "Bruna"
+                "3": "Sheldon"
             }
         }
     },
-    "3": {
-        "6": {
+    {
+        "44": {
+            "Category": "book",
+            "Name": "Zebra",
+            "ISBN": "989",
+            "Publisher": "Lion",
+            "Author": {
+                "98": "Zoo"
+            }
+        }
+    },
+    {
+        "6696": {
             "Category": "Other Resource",
             "Name": "Laptop",
-            "Description": "good",
+            "Description": "pretty new",
             "Brand": "Acer"
         }
     }
-}
+]

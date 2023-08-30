@@ -32,7 +32,7 @@ do {
             break;
         case "4":
             $book = new Books();
-            echo $book->searchBook();
+            $book->searchBook();
             break;
         case "5":
             $book = new Books();
@@ -228,7 +228,7 @@ class Books extends libraryResource
         //Sort the list by the books name and print the array 
         asort($b);
         print_r($b);
-     
+
         return $b;
 
     }

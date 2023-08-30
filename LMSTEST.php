@@ -3,20 +3,18 @@
 include 'LMS.php';
 
 use PHPUnit\Framework\TestCase;
-use SebastianBergmann\Type\VoidType;
 
 final class LMSTEST extends TestCase
 {
     public function testSearchBook(): void
     {
-        $bookName = "Logics";
+        $bookName = "The big bang theory";
 
-        $expectedBookId = "121212";
+        $expectedBookId = "1234";
         $b = new Books();
         $books = $b->searchBook();
 
         $this->assertSame($expectedBookId, (string) $books["ISBN"]);
-
 
     }
 
@@ -26,8 +24,9 @@ final class LMSTEST extends TestCase
         $b = $b->sortBook();
 
         $books = [];
-        $books[3] = "Eclipse";
-        $books[1] = "Logics";
+        $books[1] = "Barbi";
+        $books[2] = "The big bang theory";
+        $books[44] = "Zebra";
 
         $this->assertSame($books, $b);
 
